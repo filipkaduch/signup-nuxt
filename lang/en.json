@@ -1,0 +1,41 @@
+{
+  "signup": {
+    "form": {
+      "button": "Submit",
+      "checkbox": {
+        "label": "Receive product updates and announcements"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Eg. name{'@'}email.com",
+        "validation": {
+          "invalid": "Please enter a valid email address",
+          "required": "Please enter email to proceed"
+        }
+      },
+      "password": {
+        "hint": "Must be between 8 and 32 characters",
+        "hide": "Hide",
+        "label": "Password",
+        "show": "Show",
+        "validation": {
+          "invalid": "Please enter a valid password",
+          "required": "Please enter password to proceed"
+        }
+      },
+      "title": "Signup form"
+    },
+    "meta": {
+      "title": "Signup"
+    }
+  },
+  "success": {
+    "card": {
+      "consent": "You have decided to follow our newsletter",
+      "title": "You are signed up with {email}"
+    },
+    "meta": {
+      "title": "Success"
+    }
+  }
+}

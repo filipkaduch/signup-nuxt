@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "types": ["@provetcloud/web-components-vue-types"]
+  },
+  "extends": "./.nuxt/tsconfig.json"
+}
