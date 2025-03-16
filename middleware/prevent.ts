@@ -1,13 +1,11 @@
-import useSignupFormStore from "~/stores/SignupFormStore";
-
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(async (to) => {
   const restrictedPaths = ['/success'];
 
-  const signupFormStore = useSignupFormStore();
+  const data = await $fetch('/api/auth/session', {
+    credentials: 'include',
+  });
 
-  const { missingInfo } = signupFormStore;
-
-  if (restrictedPaths.includes(to.path) && missingInfo) {
+  if (process.client && restrictedPaths.includes(to.path) && !data.isAuthenticated) {
     return navigateTo('/');
   }
 });

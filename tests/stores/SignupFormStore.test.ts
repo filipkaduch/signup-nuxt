@@ -10,15 +10,7 @@ describe('SignupFormStore', () => {
   const signupFormStore = useSignupFormStore();
 
   test('Default values', () => {
-    expect(signupFormStore.email).toBe('');
-
-    expect(signupFormStore.password).toBe('');
-
-    expect(signupFormStore.newsConsent).toBe(false);
-
     expect(signupFormStore.errors).toEqual({});
-
-    expect(signupFormStore.missingInfo).toBe(true);
   });
 
   test('Validates an empty email field', () => {
@@ -37,8 +29,6 @@ describe('SignupFormStore', () => {
     signupFormStore.validateFields(validEmail, validPassword);
 
     expect(signupFormStore.errors.email).toBeUndefined();
-
-    expect(signupFormStore.email).toBe(validEmail);
   });
 
   test('Validates an empty password field', () => {
@@ -57,14 +47,6 @@ describe('SignupFormStore', () => {
     signupFormStore.validateFields(validEmail, validPassword);
 
     expect(signupFormStore.errors.password).toBeUndefined();
-
-    expect(signupFormStore.password).toBe(validPassword);
-  });
-
-  test('Sets missingInfo to false when both email and password are provided', () => {
-    signupFormStore.validateFields(validEmail, validPassword);
-
-    expect(signupFormStore.missingInfo).toBe(false);
   });
 
   test('Sets hasError to true when any error is present', () => {

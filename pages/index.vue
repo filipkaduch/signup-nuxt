@@ -13,6 +13,7 @@ definePageMeta({
     navigateAuthenticatedTo: '/success',
   },
   layout: 'guest',
+  title: 'signup.meta.title',
 });
 
 useHead({

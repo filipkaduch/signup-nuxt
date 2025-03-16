@@ -71,13 +71,13 @@ defineProps({
 
 const { t } = useI18n();
 
-const { replace } = useRouter();
+const { push } = useRouter();
 
 const signupFormStore = useSignupFormStore();
 
 const { errors, newsConsent } = storeToRefs(signupFormStore);
 
-const { hasErrors, validateFields } = signupFormStore;
+const { validateFields } = signupFormStore;
 
 const showPassword = ref<boolean>(false);
 
@@ -85,19 +85,33 @@ const emailField = ref<string>('');
 
 const passwordField = ref<string>('');
 
-const emailError = computed<string | null>(() => errors.value.email ? t(`signup.form.email.validation.${errors.value.email}`) : null);
+const emailError = computed<string | undefined>(() => errors.value.email ? t(`signup.form.email.validation.${errors.value.email}`) : undefined);
 
-const passwordError = computed<string | null>(() => errors.value.password ? t(`signup.form.password.validation.${errors.value.password}`) : null);
+const passwordError = computed<string | undefined>(() => errors.value.password ? t(`signup.form.password.validation.${errors.value.password}`) : undefined);
 
 const buttonLabel = computed<string>(() => t(`signup.form.password.${showPassword.value ? 'hide' : 'show'}`));
 
-const isClient = computed(() => process.client);
+const signup = async () => {
+  const errs = validateFields(emailField.value, passwordField.value);
 
-const signup = () => {
-  validateFields(emailField.value, passwordField.value);
+  if (!errs) {
+    const { signupCall } = useAuthentication();
 
-  if (!hasErrors) {
-    replace('/success');
+    try {
+      const response = await signupCall({
+        email: emailField.value,
+        password: passwordField.value,
+        consent: newsConsent.value,
+      });
+      
+      if (response.success) {
+        useCookie('session').value = response.user;
+
+        push('/success');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
 </script>

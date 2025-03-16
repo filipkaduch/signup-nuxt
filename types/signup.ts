@@ -13,3 +13,9 @@ export interface SignupFormErrors {
   email?: ErrorTypes;
   password?: ErrorTypes
 };
+
+export interface SignupFields {
+  consent: boolean;
+  email: string;
+  password: string;
+}

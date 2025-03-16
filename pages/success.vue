@@ -12,6 +12,7 @@ useHead({
 });
 
 definePageMeta({
+  title: 'success.meta.title',
   middleware: ['prevent'],
 });
 </script>

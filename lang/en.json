@@ -32,6 +32,7 @@
   "success": {
     "card": {
       "consent": "You have decided to follow our newsletter",
+      "signout": "Signout",
       "title": "You are signed up with {email}"
     },
     "meta": {
